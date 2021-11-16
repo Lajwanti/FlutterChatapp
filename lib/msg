@@ -1,0 +1,23 @@
+<?php
+
+
+ $senderid  = $_POST["senderid"];
+ $receiverid  = $_POST["recevierid"];
+
+ $mysqli = new mysqli('localhost','root','','chatapp');
+
+
+
+ $res = $mysqli->query("select * from messages where (senderid='$senderid ' AND  recevierid= '$receiverid') or (recevierid= '$senderid' AND senderid='$receiverid')");
+//$dt = mysqli_query($mysqli,$res);
+
+//print_r($_POST);
+//die("::::".$res->num_rows);
+
+ $data = $res->fetch_object();
+
+ echo json_encode(["result"=>$data]);
+
+
+ ?>
+
